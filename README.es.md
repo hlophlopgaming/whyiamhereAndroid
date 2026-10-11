@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/icon.png" width="128" height="128" alt="Logotipo de ¿Por qué estoy aquí?">
+</p>
+
 # ¿Por qué estoy aquí? — Android
 
 [English](README.md) · [Español](README.es.md) · [Русский](README.ru.md)
@@ -9,11 +13,12 @@ el tiempo, vuelves a la pantalla de inicio.
 
 **[Descargar el último APK](https://github.com/hlophlopgaming/whyiamhereAndroid/releases/latest)** · [Licencia MIT](LICENSE)
 
+
 ## Capturas de pantalla
 
 | Ajustes | Objetivo para YouTube | Recordatorio flotante |
 | --- | --- | --- |
-| ![Ajustes](fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg) | ![Objetivo para YouTube](fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg) | ![Recordatorio flotante](fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg) |
+| <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="220" alt="Ajustes"></a> | <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="220" alt="Objetivo para YouTube"></a> | <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg" width="220" alt="Recordatorio flotante"></a> |
 
 ## Funciones
 

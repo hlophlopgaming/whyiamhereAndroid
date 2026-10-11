@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/icon.png" width="128" height="128" alt="Логотип «Зачем я здесь?»">
+</p>
+
 # Зачем я здесь? — Android
 
 [English](README.md) · [Español](README.es.md) · [Русский](README.ru.md)
@@ -9,11 +13,12 @@
 
 **[Скачать последний APK](https://github.com/hlophlopgaming/whyiamhereAndroid/releases/latest)** · [Лицензия MIT](LICENSE)
 
+
 ## Скриншоты
 
 | Настройки | Цель для YouTube | Плавающее напоминание |
 | --- | --- | --- |
-| ![Настройки](fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg) | ![Цель для YouTube](fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg) | ![Плавающее напоминание](fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg) |
+| <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="220" alt="Настройки"></a> | <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="220" alt="Цель для YouTube"></a> | <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg" width="220" alt="Плавающее напоминание"></a> |
 
 ## Возможности
 

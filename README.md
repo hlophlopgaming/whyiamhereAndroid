@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/icon.png" width="128" height="128" alt="Why am I here? logo">
+</p>
+
 # Why am I here? — Android
 
 [English](README.md) · [Español](README.es.md) · [Русский](README.ru.md)
@@ -7,6 +11,12 @@ choose, write down what you want to do and how much time you need. A floating
 widget keeps your goal visible; when time is up, the app returns you home.
 
 **[Download the latest APK](https://github.com/hlophlopgaming/whyiamhereAndroid/releases/latest)** · [MIT license](LICENSE)
+
+## Screenshots
+
+| Settings | Goal for YouTube | Floating reminder |
+| --- | --- | --- |
+| <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="220" alt="Settings"></a> | <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="220" alt="Goal for YouTube"></a> | <a href="fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg" width="220" alt="Floating reminder"></a> |
 
 ## Features
 
@@ -20,11 +30,6 @@ widget keeps your goal visible; when time is up, the app returns you home.
 
 **Android 8.0+ · No internet permission · No root · No account · No “Display over other apps” permission.**
 
-## Screenshots
-
-| Settings | Goal for YouTube | Floating reminder |
-| --- | --- | --- |
-| ![Settings](fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg) | ![Goal for YouTube](fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg) | ![Floating reminder](fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg) |
 
 ## Install
 
