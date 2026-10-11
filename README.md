@@ -20,6 +20,12 @@ widget keeps your goal visible; when time is up, the app returns you home.
 
 **Android 8.0+ · No internet permission · No root · No account · No “Display over other apps” permission.**
 
+## Screenshots
+
+| Settings | Goal for YouTube | Floating reminder |
+| --- | --- | --- |
+| ![Settings](fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg) | ![Goal for YouTube](fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg) | ![Floating reminder](fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg) |
+
 ## Install
 
 1. Download the `.apk` from [Releases](https://github.com/hlophlopgaming/whyiamhereAndroid/releases).

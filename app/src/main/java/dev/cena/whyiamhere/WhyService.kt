@@ -69,7 +69,7 @@ class WhyService : AccessibilityService() {
                 try {
                     app.endSession(session)
                     if (currentPackage == session.packageName) home()
-                } catch (error: Exception) { report(error, getString(R.string.error_finish_session)) }
+                } catch (error: Exception) { report(error, appLanguageContext().getString(R.string.error_finish_session)) }
                 finally { endingPackage = null }
             } },
             onPosition = { x, y -> saveSetting { app.store.saveWidgetPosition(x, y) } },
@@ -89,7 +89,7 @@ class WhyService : AccessibilityService() {
                 refresh()
                 launch { app.settings.collect { refresh() } }
                 launch { app.sessionChanges.collect { refresh() } }
-            } catch (error: Exception) { report(error, getString(R.string.error_restore_sessions)) }
+            } catch (error: Exception) { report(error, appLanguageContext().getString(R.string.error_restore_sessions)) }
         }
     }
 
@@ -149,7 +149,7 @@ class WhyService : AccessibilityService() {
                     startTimer(session)
                 }
             } catch (error: Exception) {
-                report(error, getString(R.string.error_show_goal))
+                report(error, appLanguageContext().getString(R.string.error_show_goal))
                 home()
             }
         }
@@ -196,7 +196,7 @@ class WhyService : AccessibilityService() {
                     delay(1_000)
                 }
                 widget.hide()
-            } catch (error: Exception) { report(error, getString(R.string.error_timer)) }
+            } catch (error: Exception) { report(error, appLanguageContext().getString(R.string.error_timer)) }
         }
     }
 
@@ -221,7 +221,7 @@ class WhyService : AccessibilityService() {
 
     private fun saveSetting(action: suspend () -> Unit) {
         scope.launch {
-            try { action() } catch (error: Exception) { report(error, getString(R.string.error_widget_position)) }
+            try { action() } catch (error: Exception) { report(error, appLanguageContext().getString(R.string.error_widget_position)) }
         }
     }
 

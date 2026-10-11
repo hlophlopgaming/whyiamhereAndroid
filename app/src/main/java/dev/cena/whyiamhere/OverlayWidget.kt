@@ -50,13 +50,13 @@ class OverlayWidget(
     }
     private val controls = LinearLayout(context).apply { orientation = LinearLayout.HORIZONTAL }
     private val collapse = Button(context).apply {
-        text = context.getString(R.string.collapse)
+        text = context.appLanguageContext().getString(R.string.collapse)
         isAllCaps = false
         minHeight = dp(48)
         setOnClickListener { toggle() }
     }
     private val finish = Button(context).apply {
-        text = context.getString(R.string.finish_session)
+        text = context.appLanguageContext().getString(R.string.finish_session)
         isAllCaps = false
         minHeight = dp(48)
         setOnClickListener { session?.let(onFinish) }
@@ -87,8 +87,9 @@ class OverlayWidget(
 
     fun show(value: Session, settings: AppSettings) {
         session = value
-        collapse.setText(R.string.collapse)
-        finish.setText(R.string.finish_session)
+        val language = context.appLanguageContext()
+        collapse.text = language.getString(R.string.collapse)
+        finish.text = language.getString(R.string.finish_session)
         goal.text = value.goal
         collapsed = settings.collapsed
         params.x = settings.widgetX
@@ -109,7 +110,7 @@ class OverlayWidget(
 
     fun update(remaining: Long, warning: Boolean) {
         timer.text = formatRemaining(remaining)
-        timer.contentDescription = context.getString(
+        timer.contentDescription = context.appLanguageContext().getString(
             if (collapsed) R.string.widget_description_collapsed else R.string.widget_description_expanded,
             session?.goal.orEmpty(), timer.text,
         )

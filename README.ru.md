@@ -9,6 +9,12 @@
 
 **[Скачать последний APK](https://github.com/hlophlopgaming/whyiamhereAndroid/releases/latest)** · [Лицензия MIT](LICENSE)
 
+## Скриншоты
+
+| Настройки | Цель для YouTube | Плавающее напоминание |
+| --- | --- | --- |
+| ![Настройки](fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg) | ![Цель для YouTube](fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg) | ![Плавающее напоминание](fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg) |
+
 ## Возможности
 
 - Выбор установленных приложений с поиском и иконками.

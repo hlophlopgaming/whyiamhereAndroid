@@ -1,0 +1,1 @@
+Fixed floating-widget buttons, accessibility descriptions and service messages ignoring the app language on Android 13+. Settings and the widget now use the same language, including when it differs from the system language.

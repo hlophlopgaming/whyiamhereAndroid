@@ -1,0 +1,1 @@
+Corregido el idioma de los botones del widget, las descripciones de accesibilidad y los mensajes del servicio en Android 13 o posterior. El widget y los ajustes usan el mismo idioma aunque sea distinto del idioma del sistema.

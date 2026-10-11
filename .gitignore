@@ -11,3 +11,7 @@ __pycache__/
 .idea/
 *.iml
 /dist/
+
+# Local screenshot originals and Android Studio JVM selection.
+/screens/
+/gradle/gradle-daemon-jvm.properties

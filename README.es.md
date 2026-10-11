@@ -9,6 +9,12 @@ el tiempo, vuelves a la pantalla de inicio.
 
 **[Descargar el último APK](https://github.com/hlophlopgaming/whyiamhereAndroid/releases/latest)** · [Licencia MIT](LICENSE)
 
+## Capturas de pantalla
+
+| Ajustes | Objetivo para YouTube | Recordatorio flotante |
+| --- | --- | --- |
+| ![Ajustes](fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg) | ![Objetivo para YouTube](fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg) | ![Recordatorio flotante](fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg) |
+
 ## Funciones
 
 - Selección de aplicaciones instaladas con búsqueda e iconos.
