@@ -1,7 +1,7 @@
 # Releasing
 
 The prepared F-Droid build recipe, submission text and validation results are in
-[fdroid/SUBMISSION.md](../fdroid/SUBMISSION.md). Inclusion has not yet been requested.
+[fdroid/SUBMISSION.md](../fdroid/SUBMISSION.md). Inclusion is pending in [fdroiddata !52121](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/52121).
 Keep the translated store descriptions and `changelogs/VERSION_CODE.txt` under
 `fastlane/metadata/android/` up to date for future releases.
 

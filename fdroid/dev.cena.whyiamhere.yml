@@ -8,13 +8,6 @@ IssueTracker: https://github.com/hlophlopgaming/whyiamhereAndroid/issues
 Changelog: https://github.com/hlophlopgaming/whyiamhereAndroid/releases
 
 AutoName: Why am I here?
-Summary: Set a goal before opening distracting apps
-Description: |-
-  Choose apps, set a goal and a time limit, and keep a floating reminder visible.
-  Uses an accessibility service to detect the active app and return home when
-  time expires. No internet permission, account, ads or tracking. Goals and
-  history stay on your device. English, Spanish and Russian are supported.
-
 RepoType: git
 Repo: https://github.com/hlophlopgaming/whyiamhereAndroid.git
 Binaries: https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v%v/whyiamhere-%v.apk

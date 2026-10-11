@@ -1,9 +1,16 @@
 # F-Droid submission
 
-Status: prepared, not submitted. A GitLab account is required to submit to the
-official F-Droid repository. This project is not yet listed or approved there.
+Status: submitted on 2026-10-11 as
+[fdroiddata !52121](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/52121).
+The merge request is open; this project is not yet listed or approved by F-Droid.
 
-## Submit
+The fork pipeline failed before creating any jobs (no YAML error was reported).
+The merge request asks F-Droid maintainers to trigger upstream CI. Official
+buildserver validation and real phone screenshots are still pending.
+
+## Submission procedure (already completed)
+
+Do not create a duplicate request; use the existing merge request above.
 
 1. Register at https://gitlab.com/users/sign_up and verify your email.
 2. Fork https://gitlab.com/fdroid/fdroiddata into your GitLab account.
