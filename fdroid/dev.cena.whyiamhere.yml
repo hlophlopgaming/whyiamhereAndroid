@@ -13,9 +13,9 @@ Repo: https://github.com/hlophlopgaming/whyiamhereAndroid.git
 Binaries: https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v%v/whyiamhere-%v.apk
 
 Builds:
-  - versionName: 0.3.0
-    versionCode: 3
-    commit: 6fc88cfd14876761a78a7262f4a7815f87f310e7
+  - versionName: 0.3.1
+    versionCode: 4
+    commit: 3e1934f4945866319f814ad377e6476f9e598342
     subdir: app
     gradle:
       - yes
@@ -24,5 +24,5 @@ AllowedAPKSigningKeys: 17ef695c03f3419115129e1c341e94d1cb43f78091f02c19202bac2cf
 
 AutoUpdateMode: Version v%v
 UpdateCheckMode: Tags
-CurrentVersion: 0.3.0
-CurrentVersionCode: 3
+CurrentVersion: 0.3.1
+CurrentVersionCode: 4

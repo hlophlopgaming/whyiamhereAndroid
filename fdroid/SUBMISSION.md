@@ -6,7 +6,8 @@ The merge request is open; this project is not yet listed or approved by F-Droid
 
 The fork pipeline failed before creating any jobs (no YAML error was reported).
 The merge request asks F-Droid maintainers to trigger upstream CI. Official
-buildserver validation and real phone screenshots are still pending.
+buildserver validation is still pending. The recipe now targets v0.3.1
+(versionCode 4); three English screenshots from a real phone are included.
 
 ## Submission procedure (already completed)
 
@@ -21,11 +22,12 @@ Do not create a duplicate request; use the existing merge request above.
 5. Check the CI results and respond to reviewer requests. Publication depends
    on review and successful builds on F-Droid infrastructure.
 
-The existing v0.3.0 tag and APK remain unchanged. Descriptions, translations,
+The current recipe targets v0.3.1. Descriptions, translations,
 changelog and a 512×512 PNG rendered from the app's vector icon are in
-`fastlane/metadata/android/`. Real phone screenshots have not been added because
-no device was connected. Add those under each locale's `images/phoneScreenshots/`
-when available; do not substitute mockups for actual app screenshots.
+`fastlane/metadata/android/`. Three English screenshots supplied by the maintainer are stored as
+`en-US/images/phoneScreenshots/1.jpg`, `2.jpg` and `3.jpg`: settings, the YouTube
+goal form, and the floating widget with English buttons. They are also displayed
+in the GitHub READMEs and the F-Droid merge request.
 
 ## Merge request body
 
@@ -34,8 +36,8 @@ New application: **Why am I here?**, a small offline tool for intentional app us
 - Source: https://github.com/hlophlopgaming/whyiamhereAndroid
 - License: MIT
 - Application ID: `dev.cena.whyiamhere`
-- Release: https://github.com/hlophlopgaming/whyiamhereAndroid/releases/tag/v0.3.0
-- Version: 0.3.0 / versionCode 3
+- Release: https://github.com/hlophlopgaming/whyiamhereAndroid/releases/tag/v0.3.1
+- Version: 0.3.1 / versionCode 4
 - Minimum Android version: 8.0 (API 26)
 - Build: Gradle 9.3.1, AGP 9.1.1, OpenJDK 17, Android SDK Platform 37.0,
   Build Tools 36.0.0
@@ -50,7 +52,7 @@ service can be disabled and returning home does not stop background audio.
 
 The recipe requests reproducible builds with the existing upstream signing key.
 No private key is needed or provided. An independent unsigned build of commit
-`6fc88cfd14876761a78a7262f4a7815f87f310e7` passed `apksigcopier compare --unsigned`
+`3e1934f4945866319f814ad377e6476f9e598342` passed `apksigcopier compare --unsigned`
 against the published release APK, using the same local toolchain. Official
 F-Droid CI/buildserver verification is still needed.
 
@@ -63,8 +65,9 @@ Local validation on 2026-10-11:
 - `apksigcopier compare --unsigned` passed with apksigcopier 1.1.1.
 - Store descriptions in three languages and the icon are available upstream.
 
-The complete official buildserver pipeline has not been run. Real device
-screenshots are still pending. Please advise if any packaging changes are needed.
+The complete official buildserver pipeline has not been run. The app-language
+fix was manually verified on a Samsung Galaxy S20+ running Android 13. The
+regression test was compiled but has not been executed on the phone. Please advise if any packaging changes are needed.
 
 ## Reproduce the local APK comparison
 
@@ -75,10 +78,10 @@ so building a source archive without `.git` produces different APK metadata.
 ```sh
 git clone https://github.com/hlophlopgaming/whyiamhereAndroid.git why-fdroid-check
 cd why-fdroid-check
-git checkout v0.3.0
+git checkout v0.3.1
 # Set JAVA_HOME to OpenJDK 17 and ANDROID_HOME to your Android SDK.
 ./gradlew assembleRelease --console=plain
-curl -fL https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v0.3.0/whyiamhere-0.3.0.apk -o upstream.apk
+curl -fL https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v0.3.1/whyiamhere-0.3.1.apk -o upstream.apk
 # Install apksigcopier and put apksigner and java on PATH.
 apksigcopier compare --unsigned upstream.apk app/build/outputs/apk/release/app-release-unsigned.apk
 ```
