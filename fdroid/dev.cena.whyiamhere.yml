@@ -1,0 +1,35 @@
+Categories:
+  - Habit Tracker
+  - Timer
+License: MIT
+AuthorName: hlophlopgaming
+SourceCode: https://github.com/hlophlopgaming/whyiamhereAndroid
+IssueTracker: https://github.com/hlophlopgaming/whyiamhereAndroid/issues
+Changelog: https://github.com/hlophlopgaming/whyiamhereAndroid/releases
+
+AutoName: Why am I here?
+Summary: Set a goal before opening distracting apps
+Description: |-
+  Choose apps, set a goal and a time limit, and keep a floating reminder visible.
+  Uses an accessibility service to detect the active app and return home when
+  time expires. No internet permission, account, ads or tracking. Goals and
+  history stay on your device. English, Spanish and Russian are supported.
+
+RepoType: git
+Repo: https://github.com/hlophlopgaming/whyiamhereAndroid.git
+Binaries: https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v%v/whyiamhere-%v.apk
+
+Builds:
+  - versionName: 0.3.0
+    versionCode: 3
+    commit: 6fc88cfd14876761a78a7262f4a7815f87f310e7
+    subdir: app
+    gradle:
+      - yes
+
+AllowedAPKSigningKeys: 17ef695c03f3419115129e1c341e94d1cb43f78091f02c19202bac2cf54466e9
+
+AutoUpdateMode: Version v%v
+UpdateCheckMode: Tags
+CurrentVersion: 0.3.0
+CurrentVersionCode: 3

@@ -1,0 +1,12 @@
+Use your apps with intention. Choose the apps you want to be more mindful about, then enter a goal and a time limit before using them.
+
+• Set a duration of 5, 15, 30 minutes, or your own value.
+• Keep your goal and remaining time visible in a draggable, collapsible widget.
+• Use independent timers for different apps and finish sessions early.
+• Get a warning before time runs out, then return to the home screen.
+• Reuse recent goals stored locally on your phone.
+• English, Spanish and Russian follow your system language.
+
+The accessibility service detects the active app, shows the reminder and returns you home when time expires. It does not read screen text, passwords or messages. No internet permission, account, root or separate overlay permission is required. Your settings, goals and sessions stay on your device; Android backup is disabled.
+
+This is a voluntary reminder, not a tamper-proof blocker. An app may appear briefly before the goal form. Background audio can continue after returning home. Background expiry is handled when you return to the app. Changing the phone clock changes the timer. Some manufacturers require battery restrictions to be disabled for the service.

@@ -1,0 +1,12 @@
+Usa tus aplicaciones con intención. Elige las aplicaciones que quieres usar con más atención e indica un objetivo y un límite de tiempo antes de abrirlas.
+
+• Elige 5, 15, 30 minutos o una duración personalizada.
+• Mantén visibles tu objetivo y el tiempo restante en un widget que puedes mover y contraer.
+• Usa temporizadores independientes y termina las sesiones antes de tiempo.
+• Recibe un aviso y vuelve a la pantalla de inicio cuando se agote el tiempo.
+• Reutiliza objetivos recientes guardados en el teléfono.
+• Interfaz en español, inglés o ruso según el idioma del sistema.
+
+El servicio de accesibilidad detecta la aplicación activa, muestra el recordatorio y vuelve al inicio al finalizar el tiempo. No lee textos de pantalla, contraseñas ni mensajes. No requiere internet, cuenta, root ni un permiso adicional de superposición. Los datos permanecen en el dispositivo y la copia de seguridad de Android está desactivada.
+
+Es un recordatorio voluntario. La aplicación puede aparecer brevemente antes del formulario. El audio en segundo plano puede continuar. Las sesiones que caducan en segundo plano se procesan al volver. Cambiar el reloj modifica el temporizador. Algunos fabricantes requieren desactivar las restricciones de batería del servicio.

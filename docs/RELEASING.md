@@ -1,5 +1,10 @@
 # Releasing
 
+The prepared F-Droid build recipe, submission text and validation results are in
+[fdroid/SUBMISSION.md](../fdroid/SUBMISSION.md). Inclusion has not yet been requested.
+Keep the translated store descriptions and `changelogs/VERSION_CODE.txt` under
+`fastlane/metadata/android/` up to date for future releases.
+
 The APK release is built locally and published to the existing GitHub repository.
 GitHub CLI must be authenticated with permission to push and create releases.
 The script works in Bash with Git, Python 3, `sha256sum`, JDK 17, and Android SDK
