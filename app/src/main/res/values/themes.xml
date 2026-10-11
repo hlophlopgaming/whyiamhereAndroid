@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.WhyAmIHere" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorAccent">#426654</item>
+    </style>
+    <color name="launcher_background">#E4F2E9</color>
+</resources>
