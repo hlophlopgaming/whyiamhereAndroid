@@ -5,5 +5,9 @@ local.properties
 keystore.properties
 *.jks
 *.keystore
+*.p12
+__pycache__/
+*.pyc
 .idea/
 *.iml
+/dist/

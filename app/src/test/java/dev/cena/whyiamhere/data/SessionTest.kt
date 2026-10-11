@@ -2,6 +2,8 @@ package dev.cena.whyiamhere.data
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class SessionTest {
@@ -21,5 +23,16 @@ class SessionTest {
         assertThrows(IllegalArgumentException::class.java) { valid.copy(goal = " ") }
         assertThrows(IllegalArgumentException::class.java) { valid.copy(durationMin = 0) }
         assertThrows(IllegalArgumentException::class.java) { valid.copy(endAt = 1_000L) }
+    }
+
+    @Test
+    fun `warning starts at threshold and is disabled after expiry or at zero setting`() {
+        val session = Session("app", "Цель", 5, 1_000L, 301_000L)
+        assertFalse(session.shouldWarn(240_999, 60))
+        assertTrue(session.shouldWarn(241_000, 60))
+        assertTrue(session.shouldWarn(300_999, 60))
+        assertFalse(session.shouldWarn(301_000, 60))
+        assertFalse(session.shouldWarn(241_000, 0))
+        assertFalse(session.shouldWarn(241_000, -1))
     }
 }

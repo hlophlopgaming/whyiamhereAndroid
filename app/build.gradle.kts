@@ -1,7 +1,13 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
+}
+val signingFile = rootProject.file("keystore.properties")
+val releaseKey = Properties().apply {
+    if (signingFile.exists()) signingFile.inputStream().use { load(it) }
 }
 android {
     namespace = "dev.cena.whyiamhere"
@@ -10,8 +16,25 @@ android {
         applicationId = "dev.cena.whyiamhere"
         minSdk = 26
         targetSdk = 37
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 3
+        versionName = "0.3.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        if (signingFile.exists()) create("release") {
+            storeFile = rootProject.file(requireNotNull(releaseKey.getProperty("storeFile")))
+            storePassword = requireNotNull(releaseKey.getProperty("storePassword"))
+            keyAlias = requireNotNull(releaseKey.getProperty("keyAlias"))
+            keyPassword = requireNotNull(releaseKey.getProperty("keyPassword"))
+        }
+    }
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+            if (signingFile.exists()) signingConfig = signingConfigs.getByName("release")
+        }
     }
     buildFeatures { compose = true }
     compileOptions {
@@ -29,4 +52,6 @@ dependencies {
     implementation("androidx.room:room-ktx:2.8.5")
     ksp("androidx.room:room-compiler:2.8.5")
     testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test:runner:1.6.2")
 }

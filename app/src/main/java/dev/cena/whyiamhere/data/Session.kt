@@ -19,4 +19,9 @@ data class Session(
     }
 
     fun remainingMillis(now: Long): Long = (endAt - now).coerceAtLeast(0)
+
+    fun shouldWarn(now: Long, warningSeconds: Int): Boolean {
+        val remaining = remainingMillis(now)
+        return warningSeconds > 0 && remaining > 0 && remaining <= warningSeconds.toLong() * 1000
+    }
 }
