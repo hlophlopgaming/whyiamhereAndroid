@@ -1,98 +1,63 @@
 # F-Droid submission
 
-Status: submitted on 2026-10-11 as
-[fdroiddata !52121](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/52121).
-The merge request is open; this project is not yet listed or approved by F-Droid.
+The existing [fdroiddata !52121](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/52121)
+requests inclusion. Do not create a duplicate request. Publication requires
+successful official CI and maintainer review; the app is not yet listed.
 
-The fork pipeline failed before creating any jobs (no YAML error was reported).
-The merge request asks F-Droid maintainers to trigger upstream CI. Official
-buildserver validation is still pending. The recipe now targets v0.3.1
-(versionCode 4); three English screenshots from a real phone are included.
+The recipe targets only [0.3.3](https://github.com/hlophlopgaming/whyiamhereAndroid/releases/tag/v0.3.3)
+(versionCode 6), commit `4f970573e82aef5db9dd21907fce3aa771852f0d`.
+It retains the permanent upstream signing key and uses reproducible builds.
+Store descriptions, changelogs in English, Spanish and Russian, the icon,
+and three real-device English screenshots are in `fastlane/metadata/android/`.
 
-## Submission procedure (already completed)
+## Pipeline fixes
 
-Do not create a duplicate request; use the existing merge request above.
+[The 0.3.1 pipeline](https://gitlab.com/fdroid/fdroiddata/-/pipelines/2938736065)
+confirmed a reproducible APK but failed four jobs:
 
-1. Register at https://gitlab.com/users/sign_up and verify your email.
-2. Fork https://gitlab.com/fdroid/fdroiddata into your GitLab account.
-3. On a new branch, add `dev.cena.whyiamhere.yml` from this directory as
-   `metadata/dev.cena.whyiamhere.yml` in that fork.
-4. Open a merge request targeting `fdroid/fdroiddata`, with the title
-   `New App: Why am I here? (dev.cena.whyiamhere)` and the body below.
-5. Check the CI results and respond to reviewer requests. Publication depends
-   on review and successful builds on F-Droid infrastructure.
+- `check apk`: encrypted dependency metadata in the APK signing block.
+  Release 0.3.3 disables it with `dependenciesInfo { includeInApk = false }`.
+- `schema validation`: corrected `AutoUpdateMode` to `Version`.
+- `fdroid rewritemeta`: regenerated canonical YAML, using ruamel.yaml 0.18.10
+  to match CI.
+- `checkupdates`: replaced old builds with the latest release and set the
+  current version and full commit hash accordingly.
 
-The current recipe targets v0.3.1. Descriptions, translations,
-changelog and a 512×512 PNG rendered from the app's vector icon are in
-`fastlane/metadata/android/`. Three English screenshots supplied by the maintainer are stored as
-`en-US/images/phoneScreenshots/1.jpg`, `2.jpg` and `3.jpg`: settings, the YouTube
-goal form, and the floating widget with English buttons. They are also displayed
-in the GitHub READMEs and the F-Droid merge request.
+## Local validation on 2026-10-12
 
-## Merge request body
+- 14 JVM tests, 6 release-script tests, translations and release lint passed.
+- Device tests compiled; they were not executed for this packaging change.
+- Current fdroidserver master APK scanner passed with refreshed signatures.
+- `fdroid lint`, `fdroid rewritemeta` and the current fdroiddata JSON schema passed.
+- A separate Git clone built the release commit without signing credentials.
+  `apksigcopier compare --unsigned` passed against the signed release APK.
+- The release script verified the uploaded APK byte for byte before publication.
 
-New application: **Why am I here?**, a small offline tool for intentional app use.
+These local results do not replace official CI validation of 0.3.3.
+The recipe and MR description were updated to 0.3.3. The new
+[fork pipeline](https://gitlab.com/hlophlopgaming/fdroiddata/-/pipelines/2939576242)
+failed without creating any jobs; its API reports `yaml_errors: null`.
+The submitting account has no project or group access to `fdroid/fdroiddata`.
+A F-Droid maintainer must trigger the pipeline in the parent project, as for
+the previous upstream run. No paid CI or account-verification changes were made.
 
-- Source: https://github.com/hlophlopgaming/whyiamhereAndroid
-- License: MIT
-- Application ID: `dev.cena.whyiamhere`
-- Release: https://github.com/hlophlopgaming/whyiamhereAndroid/releases/tag/v0.3.1
-- Version: 0.3.1 / versionCode 4
-- Minimum Android version: 8.0 (API 26)
-- Build: Gradle 9.3.1, AGP 9.1.1, OpenJDK 17, Android SDK Platform 37.0,
-  Build Tools 36.0.0
-- Languages: English, Spanish and Russian
-- No internet permission, accounts, advertisements, analytics or proprietary SDKs
-- The author requests inclusion and intends to maintain the application.
+## Reproduce the APK comparison
 
-An AccessibilityService detects the active app's package, displays a goal and
-timer overlay, and performs the Home action when a session expires. It does not
-read screen text or capture screenshots. This is a voluntary reminder; the
-service can be disabled and returning home does not stop background audio.
-
-The recipe requests reproducible builds with the existing upstream signing key.
-No private key is needed or provided. An independent unsigned build of commit
-`3e1934f4945866319f814ad377e6476f9e598342` passed `apksigcopier compare --unsigned`
-against the published release APK, using the same local toolchain. Official
-F-Droid CI/buildserver verification is still needed.
-
-Local validation on 2026-10-11:
-
-- `fdroid rewritemeta` and `fdroid lint` passed with fdroidserver 2.4.5 and
-  the current fdroiddata category definitions.
-- `fdroid scanner --exit-code` passed on the release APK.
-- Release build from a separate checkout without signing credentials passed.
-- `apksigcopier compare --unsigned` passed with apksigcopier 1.1.1.
-- Store descriptions in three languages and the icon are available upstream.
-
-The complete official buildserver pipeline has not been run. The app-language
-fix was manually verified on a Samsung Galaxy S20+ running Android 13. The
-regression test was compiled but has not been executed on the phone. Please advise if any packaging changes are needed.
-
-## Reproduce the local APK comparison
-
-Use a separate clone; do not copy `keystore.properties` into it. A Git checkout
-is required: AGP includes the Git revision in `META-INF/version-control-info.textproto`,
-so building a source archive without `.git` produces different APK metadata.
+Use a Git clone without `keystore.properties`: AGP records the source revision
+in the APK, so an archive without `.git` is not equivalent.
 
 ```sh
 git clone https://github.com/hlophlopgaming/whyiamhereAndroid.git why-fdroid-check
 cd why-fdroid-check
-git checkout v0.3.1
-# Set JAVA_HOME to OpenJDK 17 and ANDROID_HOME to your Android SDK.
+git checkout 4f970573e82aef5db9dd21907fce3aa771852f0d
+# Set JAVA_HOME and ANDROID_HOME; put java and apksigner on PATH.
 ./gradlew assembleRelease --console=plain
-curl -fL https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v0.3.1/whyiamhere-0.3.1.apk -o upstream.apk
-# Install apksigcopier and put apksigner and java on PATH.
+curl -fL https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v0.3.3/whyiamhere-0.3.3.apk -o upstream.apk
 apksigcopier compare --unsigned upstream.apk app/build/outputs/apk/release/app-release-unsigned.apk
 ```
 
 Expected signing certificate SHA-256:
 `17ef695c03f3419115129e1c341e94d1cb43f78091f02c19202bac2cf54466e9`.
 
-The metadata enables update checks on version tags and matches upstream APK
-URLs. Future releases must retain the permanent signing key and remain
-reproducible; otherwise F-Droid cannot publish those APKs with this recipe.
-
-References:
-- https://f-droid.org/docs/Submitting_to_F-Droid_Quick_Start_Guide/
-- https://f-droid.org/docs/Reproducible_Builds/
+The metadata enables checks on release tags and versioned APK URLs. Future
+releases must retain the permanent signing key and remain reproducible.
