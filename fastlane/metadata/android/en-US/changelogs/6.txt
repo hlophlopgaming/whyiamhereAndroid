@@ -1,0 +1,1 @@
+Fixed APK packaging for F-Droid by removing encrypted dependency metadata. App behavior and the permanent signing key are unchanged.

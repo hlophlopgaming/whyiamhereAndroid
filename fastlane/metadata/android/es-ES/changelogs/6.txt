@@ -1,0 +1,1 @@
+Corregido el empaquetado del APK para F-Droid eliminando los metadatos cifrados de dependencias. El funcionamiento y la clave de firma permanente se mantienen.

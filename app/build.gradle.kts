@@ -16,8 +16,8 @@ android {
         applicationId = "dev.cena.whyiamhere"
         minSdk = 26
         targetSdk = 37
-        versionCode = 5
-        versionName = "0.3.2"
+        versionCode = 6
+        versionName = "0.3.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -37,6 +37,8 @@ android {
         }
     }
     buildFeatures { compose = true }
+    // F-Droid rejects encrypted dependency metadata in the APK signing block.
+    dependenciesInfo { includeInApk = false }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
