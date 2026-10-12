@@ -50,4 +50,5 @@
     <string name="error_widget_position">Не удалось сохранить положение виджета.</string>
     <string name="error_read_settings">Не удалось прочитать настройки. Перезапусти приложение.</string>
     <string name="error_open_data">Не удалось открыть данные приложения. Перезапусти приложение.</string>
+    <string name="only_selected_apps">Только выбранные</string>
 </resources>

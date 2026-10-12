@@ -50,4 +50,5 @@
     <string name="error_widget_position">Could not save the widget position.</string>
     <string name="error_read_settings">Could not read settings. Restart the app.</string>
     <string name="error_open_data">Could not open app data. Restart the app.</string>
+    <string name="only_selected_apps">Only selected</string>
 </resources>

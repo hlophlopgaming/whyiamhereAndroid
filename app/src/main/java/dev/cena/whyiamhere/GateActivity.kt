@@ -78,14 +78,6 @@ class GateActivity : ComponentActivity() {
                                 label = { Text(stringResource(R.string.goal_label)) }, placeholder = { Text(stringResource(R.string.goal_example)) },
                                 enabled = !busy, modifier = Modifier.fillMaxWidth(), minLines = 2, maxLines = 4,
                             )
-                            if (history.isNotEmpty()) {
-                                Text(stringResource(R.string.recent_goals), style = MaterialTheme.typography.titleSmall)
-                                history.forEach { item ->
-                                    OutlinedButton(enabled = !busy, onClick = {
-                                        goal = item.goal; minutes = item.durationMin.toString()
-                                    }, modifier = Modifier.fillMaxWidth()) { Text(item.goal) }
-                                }
-                            }
                             Text(stringResource(R.string.duration_title), style = MaterialTheme.typography.titleMedium)
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 listOf(5, 15, 30).forEach { preset ->
@@ -132,6 +124,17 @@ class GateActivity : ComponentActivity() {
                                 },
                             ) { Text(stringResource(if (busy) R.string.opening_app else R.string.start_session)) }
                             TextButton(onClick = { cancelGate() }, modifier = Modifier.fillMaxWidth()) { Text(stringResource(R.string.return_home)) }
+                            if (history.isNotEmpty()) {
+                                Text(stringResource(R.string.recent_goals), style = MaterialTheme.typography.titleSmall)
+                                Column(Modifier.fillMaxWidth().heightIn(max = 160.dp)
+                                    .verticalScroll(rememberScrollState())) {
+                                    history.forEach { item ->
+                                        OutlinedButton(enabled = !busy, onClick = {
+                                            goal = item.goal; minutes = item.durationMin.toString()
+                                        }, modifier = Modifier.fillMaxWidth()) { Text(item.goal) }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

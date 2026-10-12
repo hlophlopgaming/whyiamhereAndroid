@@ -50,4 +50,5 @@
     <string name="error_widget_position">No se pudo guardar la posición del widget.</string>
     <string name="error_read_settings">No se pudieron leer los ajustes. Reinicia la aplicación.</string>
     <string name="error_open_data">No se pudieron abrir los datos de la aplicación. Reiníciala.</string>
+    <string name="only_selected_apps">Solo seleccionadas</string>
 </resources>

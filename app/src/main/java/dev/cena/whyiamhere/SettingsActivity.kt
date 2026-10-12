@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
@@ -59,6 +60,7 @@ class SettingsActivity : ComponentActivity() {
             val snackbar = remember { SnackbarHostState() }
             var apps by remember { mutableStateOf<List<InstalledApp>>(emptyList()) }
             var loading by remember { mutableStateOf(true) }
+            var selectedOnly by rememberSaveable { mutableStateOf(false) }
             var search by remember { mutableStateOf("") }
             var warning by remember(settings.warningSeconds) { mutableStateOf(settings.warningSeconds.toString()) }
             var confirmClear by remember { mutableStateOf(false) }
@@ -135,10 +137,15 @@ class SettingsActivity : ComponentActivity() {
                                 value = search, onValueChange = { search = it }, label = { Text(stringResource(R.string.search_apps)) },
                                 singleLine = true, modifier = Modifier.fillMaxWidth(),
                             )
+                            FilterChip(
+                                selected = selectedOnly, onClick = { selectedOnly = !selectedOnly },
+                                label = { Text(stringResource(R.string.only_selected_apps)) },
+                            )
                             if (loading) LinearProgressIndicator(Modifier.fillMaxWidth())
                         }
-                        val visibleApps = apps.filter { it.label.contains(search.trim(), ignoreCase = true) ||
-                            it.packageName.contains(search.trim(), ignoreCase = true) }
+                        val visibleApps = apps.filter { (!selectedOnly || it.packageName in settings.selectedPackages) &&
+                            (it.label.contains(search.trim(), ignoreCase = true) ||
+                                it.packageName.contains(search.trim(), ignoreCase = true)) }
                         if (!loading && visibleApps.isEmpty()) item { Text(stringResource(R.string.no_apps)) }
                         items(visibleApps, key = { it.packageName }) { installed ->
                             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {

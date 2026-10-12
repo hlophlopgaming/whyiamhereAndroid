@@ -1,0 +1,1 @@
+Keep the goal form usable with a full recent-goal history. History now appears below the session controls in a scrollable area. Added an "Only selected" filter to view and manage selected apps.
