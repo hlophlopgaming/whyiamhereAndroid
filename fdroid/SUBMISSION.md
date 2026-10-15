@@ -4,42 +4,46 @@ The existing [fdroiddata !52121](https://gitlab.com/fdroid/fdroiddata/-/merge_re
 requests inclusion. Do not create a duplicate request. Publication requires
 successful official CI and maintainer review; the app is not yet listed.
 
-The recipe targets only [0.3.3](https://github.com/hlophlopgaming/whyiamhereAndroid/releases/tag/v0.3.3)
-(versionCode 6), commit `4f970573e82aef5db9dd21907fce3aa771852f0d`.
+The recipe targets only [0.3.4](https://github.com/hlophlopgaming/whyiamhereAndroid/releases/tag/v0.3.4)
+(versionCode 7), commit `33e383245d6e1c65bad20731887d2a2bdfeee084`.
 It retains the permanent upstream signing key and uses reproducible builds.
 Store descriptions, changelogs in English, Spanish and Russian, the icon,
 and three real-device English screenshots are in `fastlane/metadata/android/`.
 
-## Pipeline fixes
+## Status
 
-[The 0.3.1 pipeline](https://gitlab.com/fdroid/fdroiddata/-/pipelines/2938736065)
-confirmed a reproducible APK but failed four jobs:
+The [official 0.3.3 pipeline](https://gitlab.com/fdroid/fdroiddata/-/pipelines/2939621668)
+passed. Reviewer testing on Android 16 then found a gate-launch race: the
+one-second fallback could return home while accessibility events still reported
+the previous app. Version 0.3.4 makes the gate acknowledge its launch and cancel
+the fallback directly; a launch that never completes has a five-second timeout.
 
-- `check apk`: encrypted dependency metadata in the APK signing block.
-  Release 0.3.3 disables it with `dependenciesInfo { includeInApk = false }`.
-- `schema validation`: corrected `AutoUpdateMode` to `Version`.
-- `fdroid rewritemeta`: regenerated canonical YAML, using ruamel.yaml 0.18.10
-  to match CI.
-- `checkupdates`: replaced old builds with the latest release and set the
-  current version and full commit hash accordingly.
+The MR recipe was updated in commit
+`09f19d10c5ec6700da0d802dd6f547ab5667ca0a`.
+The new [fork pipeline](https://gitlab.com/hlophlopgaming/fdroiddata/-/pipelines/2953140021)
+failed without creating any jobs; its API reports `yaml_errors: null`.
+A F-Droid maintainer must trigger CI in the parent project for this new commit.
+Local checks do not replace official CI validation of 0.3.4.
 
-## Local validation on 2026-10-12
+## Local validation on 2026-10-16
 
-- 14 JVM tests, 6 release-script tests, translations and release lint passed.
-- Device tests compiled; they were not executed for this packaging change.
+- 14 JVM tests, 6 release-script tests and 52 translated strings checked.
+- Release lint passed with zero errors and ten warnings; the signed APK built.
+- All five Android tests passed on Android 16 (API 36) and Android 17 (API 37).
+  Chrome opened the gate in five out of five attempts on each debug build.
+- A temporary six-second accessibility-event delay reproduced the erroneous
+  return home with launch acknowledgement disabled and passed with it enabled
+  on both Android versions. All temporary source changes were removed.
+- The signed 0.3.4 APK updated over signed 0.3.3 on Android 16 and passed five
+  Chrome gate openings with no fallback warning or crash in logcat.
+- Separate per-app timers and silent mode were not checked in this round.
 - Current fdroidserver master APK scanner passed with refreshed signatures.
-- `fdroid lint`, `fdroid rewritemeta` and the current fdroiddata JSON schema passed.
+- `fdroid lint` and canonical `fdroid rewritemeta` passed using ruamel.yaml
+  0.18.10, matching the existing CI formatting.
 - A separate Git clone built the release commit without signing credentials.
   `apksigcopier compare --unsigned` passed against the signed release APK.
-- The release script verified the uploaded APK byte for byte before publication.
-
-These local results do not replace official CI validation of 0.3.3.
-The recipe and MR description were updated to 0.3.3. The new
-[fork pipeline](https://gitlab.com/hlophlopgaming/fdroiddata/-/pipelines/2939576242)
-failed without creating any jobs; its API reports `yaml_errors: null`.
-The submitting account has no project or group access to `fdroid/fdroiddata`.
-A F-Droid maintainer must trigger the pipeline in the parent project, as for
-the previous upstream run. No paid CI or account-verification changes were made.
+- The release script downloaded the uploaded APK and verified it byte for byte
+  before publication. The checksum and permanent signing certificate match.
 
 ## Reproduce the APK comparison
 
@@ -49,10 +53,10 @@ in the APK, so an archive without `.git` is not equivalent.
 ```sh
 git clone https://github.com/hlophlopgaming/whyiamhereAndroid.git why-fdroid-check
 cd why-fdroid-check
-git checkout 4f970573e82aef5db9dd21907fce3aa771852f0d
+git checkout 33e383245d6e1c65bad20731887d2a2bdfeee084
 # Set JAVA_HOME and ANDROID_HOME; put java and apksigner on PATH.
 ./gradlew assembleRelease --console=plain
-curl -fL https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v0.3.3/whyiamhere-0.3.3.apk -o upstream.apk
+curl -fL https://github.com/hlophlopgaming/whyiamhereAndroid/releases/download/v0.3.4/whyiamhere-0.3.4.apk -o upstream.apk
 apksigcopier compare --unsigned upstream.apk app/build/outputs/apk/release/app-release-unsigned.apk
 ```
 
