@@ -34,6 +34,7 @@ class WhyService : AccessibilityService() {
     private var currentPackage: String? = null
     private var lastLogged: String? = null
     private var pendingGate: String? = null
+    private var gateTimeoutJob: Job? = null
     private var refreshJob: Job? = null
     private var eventJob: Job? = null
     private var timerJob: Job? = null
@@ -158,17 +159,23 @@ class WhyService : AccessibilityService() {
     private fun openGate(packageName: String) {
         if (pendingGate == packageName) return
         pendingGate = packageName
+        gateTimeoutJob?.cancel()
         startActivity(Intent(this, GateActivity::class.java)
             .putExtra(GateActivity.EXTRA_PACKAGE, packageName)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
-        scope.launch {
-            delay(1_000)
+        gateTimeoutJob = scope.launch {
+            // shortcut: launches over five seconds can still time out; revisit if seen on slow devices.
+            delay(5_000)
             if (pendingGate == packageName && currentPackage == packageName &&
                 app.sessions.active(packageName, System.currentTimeMillis()) == null) {
                 Log.w(TAG, "Gate did not become visible; returning home")
                 home()
             }
         }
+    }
+
+    private fun gateStarted(packageName: String?) {
+        if (pendingGate == packageName) gateTimeoutJob?.cancel()
     }
 
     private fun startTimer(session: Session) {
@@ -257,6 +264,8 @@ class WhyService : AccessibilityService() {
         val connected = MutableStateFlow(false)
 
         fun goHome(context: Context) { instance?.home() ?: launchHome(context) }
+
+        fun gateStarted(packageName: String?) { instance?.gateStarted(packageName) }
 
         private fun launchHome(context: Context) {
             try {

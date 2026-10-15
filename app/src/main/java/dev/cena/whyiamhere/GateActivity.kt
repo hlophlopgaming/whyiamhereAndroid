@@ -148,6 +148,12 @@ class GateActivity : ComponentActivity() {
         completed = false
         targetPackage = intent.getStringExtra(EXTRA_PACKAGE)
         if (targetPackage.isNullOrBlank()) cancelGate()
+        else if (hasWindowFocus()) WhyService.gateStarted(targetPackage)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        WhyService.gateStarted(targetPackage)
     }
 
     private fun cancelGate() {

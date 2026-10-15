@@ -1,0 +1,1 @@
+Fixed an occasional return to the home screen instead of the goal form on slow or busy devices. The form confirms its launch independently of delayed accessibility events. Tested on Android 16 and 17.

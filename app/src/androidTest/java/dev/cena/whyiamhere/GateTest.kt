@@ -39,7 +39,7 @@ class GateTest {
             while (input == null && android.os.SystemClock.uptimeMillis() < deadline) {
                 instrumentation.waitForIdleSync()
                 val root = automation.rootInActiveWindow
-                if (root != null && root.findAccessibilityNodeInfosByText(app.getString(R.string.app_name)).size >= 2) {
+                if (root != null && root.packageName?.toString() == app.packageName) {
                     input = findEditable(root)
                 }
                 if (input == null) android.os.SystemClock.sleep(100)
@@ -50,8 +50,7 @@ class GateTest {
                 putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, "My new goal")
             }))
             instrumentation.waitForIdleSync()
-            assertTrue(requireNotNull(automation.rootInActiveWindow)
-                .findAccessibilityNodeInfosByText("My new goal").isNotEmpty())
+            assertTrue(findEditable(requireNotNull(automation.rootInActiveWindow))?.text?.toString() == "My new goal")
         } finally {
             activity?.let { instrumentation.runOnMainSync { it.finish() } }
             app.database.openHelper.writableDatabase.execSQL(
